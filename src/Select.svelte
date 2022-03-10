@@ -93,6 +93,8 @@
     export let MultiSelection = _MultiSelection;
     export let VirtualList = _VirtualList;
 
+    export let keepFilterText = false;
+
     function filterMethod(args) {
         if (args.loadOptions && args.filterText.length > 0) return;
         if (!args.items) return [];
@@ -540,13 +542,18 @@
         if (!container) return;
         const eventTarget =
             event.path && event.path.length > 0 ? event.path[0] : event.target;
-        if (container.contains(eventTarget) || container.contains(event.relatedTarget)) {
+        if (
+            container.contains(eventTarget) ||
+            container.contains(event.relatedTarget)
+        ) {
             return;
         }
         isFocused = false;
         listOpen = false;
         activeValue = undefined;
-        filterText = ''
+        if (keepFilterText) {
+            filterText = '';
+        }
         if (input) input.blur();
     }
 
@@ -591,7 +598,9 @@
         const { detail } = event;
 
         if (detail) {
-            //filterText = '';
+            if (!keepFilterText) {
+                filterText = '';
+            }
             const item = Object.assign({}, detail);
 
             if (!item.isGroupHeader || item.isSelectable) {
@@ -602,11 +611,14 @@
                 }
 
                 value = value;
-input?.focus()
-//                 setTimeout(() => {
-//                     listOpen = false;
-//                     activeValue = undefined;
-//                 });
+                if (keepFilterText) {
+                    input?.focus();
+                } else {
+                    setTimeout(() => {
+                        listOpen = false;
+                        activeValue = undefined;
+                    });
+                }
             }
         }
     }
