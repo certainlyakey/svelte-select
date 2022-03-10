@@ -602,11 +602,11 @@
                 }
 
                 value = value;
-
-                setTimeout(() => {
-                    listOpen = false;
-                    activeValue = undefined;
-                });
+input?.focus()
+//                 setTimeout(() => {
+//                     listOpen = false;
+//                     activeValue = undefined;
+//                 });
             }
         }
     }
