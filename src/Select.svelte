@@ -546,6 +546,7 @@
         isFocused = false;
         listOpen = false;
         activeValue = undefined;
+        filterText = ''
         if (input) input.blur();
     }
 
@@ -590,7 +591,7 @@
         const { detail } = event;
 
         if (detail) {
-            filterText = '';
+            //filterText = '';
             const item = Object.assign({}, detail);
 
             if (!item.isGroupHeader || item.isSelectable) {
