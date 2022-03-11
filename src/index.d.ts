@@ -56,6 +56,8 @@ export interface SelectProps {
   ariaValues?: (values: string) => string;
   ariaListOpen?: (label: string, count:number) => string;
   ariaFocused?: () => string;
+  keepFilterText?: boolean;
+  keepOpen?: boolean;
 }
 
 declare class Select extends SvelteComponent {
