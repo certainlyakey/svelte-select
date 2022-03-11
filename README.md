@@ -1,3 +1,11 @@
+# svelte-select preserving searcg
+
+svelte-select fork which adds:
+- `preserveSearch (default: false)` = doesnt reset filterText except after creating new item.
+- `keepOpen (default: false)` = in multiselect doesnt close list after selecting one items
+
+This allows you to search and select mutliple items at once without needing to search for it again or get items form api. Without these options enabled it acts just like normal svelte-select.
+
 # svelte-select
 
 A select/autocomplete component for Svelte apps.  With support for grouping, filtering, async and more.
