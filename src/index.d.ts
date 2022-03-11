@@ -56,7 +56,7 @@ export interface SelectProps {
   ariaValues?: (values: string) => string;
   ariaListOpen?: (label: string, count:number) => string;
   ariaFocused?: () => string;
-  keepFilterText?: boolean;
+  preserveSearch?: boolean;
   keepOpen?: boolean;
 }
 

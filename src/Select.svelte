@@ -96,9 +96,12 @@
     //!added props
 
     //if true, selecting item will not reset filter text
-    export let keepFilterText = false;
+    export let preserveSearch = false;
     //if true, selection will not close 
     export let keepOpen = false
+    //preserves text even after closing 
+    //export let preserveSearchAfterCloseList = false;
+
     $: {
      if (keepOpen && !listOpen && isFocused) listOpen = true;
     }
@@ -558,7 +561,7 @@
         isFocused = false;
         listOpen = false;
         activeValue = undefined;
-        if (keepFilterText) {
+        if (!preserveSearch) {
             filterText = '';
         }
         if (input) input.blur();
@@ -573,6 +576,7 @@
     export function handleClear() {
         value = undefined;
         listOpen = false;
+        filterText = '';
         dispatch('clear', value);
         handleFocus();
     }
@@ -605,7 +609,7 @@
         const { detail } = event;
 
         if (detail) {
-            if (!keepFilterText) {
+            if (!preserveSearch) {
                 filterText = '';
             }
             const item = Object.assign({}, detail);
@@ -646,7 +650,8 @@
     }
 
     function closeList() {
-        filterText = '';
+        if(!preserveSearch){filterText = '';}
+        
         listOpen = false;
     }
 
