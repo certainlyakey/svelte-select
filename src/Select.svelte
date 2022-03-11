@@ -93,8 +93,15 @@
     export let MultiSelection = _MultiSelection;
     export let VirtualList = _VirtualList;
 
-    export let keepFilterText = false;
+    //!added props
 
+    //if true, selecting item will not reset filter text
+    export let keepFilterText = false;
+    //if true, selection will not close 
+    export let keepOpen = false
+    $: {
+     if (keepOpen && !listOpen && isFocused) listOpen = true;
+    }
     function filterMethod(args) {
         if (args.loadOptions && args.filterText.length > 0) return;
         if (!args.items) return [];
