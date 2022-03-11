@@ -618,7 +618,7 @@
                 }
 
                 value = value;
-                if (keepFilterText) {
+                if (keepOpen) {
                     input?.focus();
                 } else {
                     setTimeout(() => {
