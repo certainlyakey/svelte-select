@@ -623,7 +623,9 @@
 
                 value = value;
                 if (keepOpen) {
-                    input?.focus();
+                    if (input) {
+                        input.focus();
+                    }
                 } else {
                     setTimeout(() => {
                         listOpen = false;
