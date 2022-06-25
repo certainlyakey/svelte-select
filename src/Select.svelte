@@ -99,6 +99,8 @@
     export let preserveSearch = false;
     //if true, selection will not close 
     export let keepOpen = false
+    //if true and isMulti=true, selected item will not disappear from the list 
+    export let keepSelectedItemInList = false
     //preserves text even after closing 
     //export let preserveSearchAfterCloseList = false;
 
@@ -124,17 +126,19 @@
                 item
             );
 
-            if (
-                matchesFilter &&
-                args.isMulti &&
-                args.value &&
-                Array.isArray(args.value)
-            ) {
-                matchesFilter = !args.value.some((x) => {
-                    return (
-                        x[args.optionIdentifier] === item[args.optionIdentifier]
-                    );
-                });
+            if (!keepSelectedItemInList) {
+                if (
+                    matchesFilter &&
+                    args.isMulti &&
+                    args.value &&
+                    Array.isArray(args.value)
+                ) {
+                    matchesFilter = !args.value.some((x) => {
+                        return (
+                            x[args.optionIdentifier] === item[args.optionIdentifier]
+                        );
+                    });
+                }
             }
 
             return matchesFilter;
